@@ -1,0 +1,408 @@
+{
+  "_format": "ethers-rs-sol-cache-3",
+  "paths": {
+    "artifacts": "out",
+    "sources": "src",
+    "tests": "test",
+    "libraries": [
+      "lib"
+    ]
+  },
+  "files": {
+    "/home/a/Documents/github/nftee/lib/ds-test/src/test.sol": {
+      "lastModificationDate": 1649038137453,
+      "contentHash": "5d45a46528eaf8a26f0a8d93669f3148",
+      "sourceName": "lib/ds-test/src/test.sol",
+      "solcConfig": {
+        "settings": {
+          "optimizer": {
+            "enabled": true,
+            "runs": 1000
+          },
+          "outputSelection": {
+            "*": {
+              "": [
+                "ast"
+              ],
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers"
+              ]
+            }
+          },
+          "evmVersion": "london"
+        }
+      },
+      "imports": [],
+      "versionRequirement": ">=0.4.23",
+      "artifacts": {}
+    },
+    "/home/a/Documents/github/nftee/lib/forge-std/src/Vm.sol": {
+      "lastModificationDate": 1649038163436,
+      "contentHash": "5e242d192cc1a77ac825a45b4c89ef29",
+      "sourceName": "lib/forge-std/src/Vm.sol",
+      "solcConfig": {
+        "settings": {
+          "optimizer": {
+            "enabled": true,
+            "runs": 1000
+          },
+          "outputSelection": {
+            "*": {
+              "": [
+                "ast"
+              ],
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers"
+              ]
+            }
+          },
+          "evmVersion": "london"
+        }
+      },
+      "imports": [],
+      "versionRequirement": ">=0.6.0",
+      "artifacts": {}
+    },
+    "/home/a/Documents/github/nftee/lib/forge-std/src/stdlib.sol": {
+      "lastModificationDate": 1649038163436,
+      "contentHash": "edff4c1f9c2c81f392ec796f11688f20",
+      "sourceName": "lib/forge-std/src/stdlib.sol",
+      "solcConfig": {
+        "settings": {
+          "optimizer": {
+            "enabled": true,
+            "runs": 1000
+          },
+          "outputSelection": {
+            "*": {
+              "": [
+                "ast"
+              ],
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers"
+              ]
+            }
+          },
+          "evmVersion": "london"
+        }
+      },
+      "imports": [
+        "lib/forge-std/src/Vm.sol"
+      ],
+      "versionRequirement": ">=0.6.0, <0.9.0",
+      "artifacts": {}
+    },
+    "/home/a/Documents/github/nftee/lib/openzeppelin-contracts/contracts/access/Ownable.sol": {
+      "lastModificationDate": 1649039381019,
+      "contentHash": "8398972af73b4e9e5ff3b31cad86234f",
+      "sourceName": "lib/openzeppelin-contracts/contracts/access/Ownable.sol",
+      "solcConfig": {
+        "settings": {
+          "optimizer": {
+            "enabled": true,
+            "runs": 1000
+          },
+          "outputSelection": {
+            "*": {
+              "": [
+                "ast"
+              ],
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers"
+              ]
+            }
+          },
+          "evmVersion": "london"
+        }
+      },
+      "imports": [
+        "lib/openzeppelin-contracts/contracts/utils/Context.sol"
+      ],
+      "versionRequirement": "^0.8.0",
+      "artifacts": {}
+    },
+    "/home/a/Documents/github/nftee/lib/openzeppelin-contracts/contracts/utils/Context.sol": {
+      "lastModificationDate": 1649039381069,
+      "contentHash": "5f2c5c4b6af2dd4551027144797bc8be",
+      "sourceName": "lib/openzeppelin-contracts/contracts/utils/Context.sol",
+      "solcConfig": {
+        "settings": {
+          "optimizer": {
+            "enabled": true,
+            "runs": 1000
+          },
+          "outputSelection": {
+            "*": {
+              "": [
+                "ast"
+              ],
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers"
+              ]
+            }
+          },
+          "evmVersion": "london"
+        }
+      },
+      "imports": [],
+      "versionRequirement": "^0.8.0",
+      "artifacts": {}
+    },
+    "/home/a/Documents/github/nftee/lib/openzeppelin-contracts/contracts/utils/Strings.sol": {
+      "lastModificationDate": 1649039381069,
+      "contentHash": "9c54c6c065d9e590fdcdd72c451425b9",
+      "sourceName": "lib/openzeppelin-contracts/contracts/utils/Strings.sol",
+      "solcConfig": {
+        "settings": {
+          "optimizer": {
+            "enabled": true,
+            "runs": 1000
+          },
+          "outputSelection": {
+            "*": {
+              "": [
+                "ast"
+              ],
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers"
+              ]
+            }
+          },
+          "evmVersion": "london"
+        }
+      },
+      "imports": [],
+      "versionRequirement": "^0.8.0",
+      "artifacts": {}
+    },
+    "/home/a/Documents/github/nftee/lib/solmate/src/tokens/ERC20.sol": {
+      "lastModificationDate": 1649038102513,
+      "contentHash": "a0b1801a2ffe030a0f4ff4d508ceb74f",
+      "sourceName": "lib/solmate/src/tokens/ERC20.sol",
+      "solcConfig": {
+        "settings": {
+          "optimizer": {
+            "enabled": true,
+            "runs": 1000
+          },
+          "outputSelection": {
+            "*": {
+              "": [
+                "ast"
+              ],
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers"
+              ]
+            }
+          },
+          "evmVersion": "london"
+        }
+      },
+      "imports": [],
+      "versionRequirement": ">=0.8.0",
+      "artifacts": {}
+    },
+    "/home/a/Documents/github/nftee/lib/solmate/src/tokens/ERC721.sol": {
+      "lastModificationDate": 1649038102513,
+      "contentHash": "df4d88d747262fac3c8b4f179322b7af",
+      "sourceName": "lib/solmate/src/tokens/ERC721.sol",
+      "solcConfig": {
+        "settings": {
+          "optimizer": {
+            "enabled": true,
+            "runs": 1000
+          },
+          "outputSelection": {
+            "*": {
+              "": [
+                "ast"
+              ],
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers"
+              ]
+            }
+          },
+          "evmVersion": "london"
+        }
+      },
+      "imports": [],
+      "versionRequirement": ">=0.8.0",
+      "artifacts": {}
+    },
+    "/home/a/Documents/github/nftee/src/GroovyNFTs.sol": {
+      "lastModificationDate": 1649069377912,
+      "contentHash": "3fd943050eac00d937821ef333792247",
+      "sourceName": "src/GroovyNFTs.sol",
+      "solcConfig": {
+        "settings": {
+          "optimizer": {
+            "enabled": true,
+            "runs": 1000
+          },
+          "outputSelection": {
+            "*": {
+              "": [
+                "ast"
+              ],
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers"
+              ]
+            }
+          },
+          "evmVersion": "london"
+        }
+      },
+      "imports": [
+        "lib/openzeppelin-contracts/contracts/access/Ownable.sol",
+        "lib/openzeppelin-contracts/contracts/utils/Context.sol",
+        "lib/openzeppelin-contracts/contracts/utils/Strings.sol",
+        "lib/solmate/src/tokens/ERC721.sol"
+      ],
+      "versionRequirement": ">=0.8.4",
+      "artifacts": {
+        "GroovyNFTs": {
+          "0.8.12+commit.f00d7308.Linux.gcc": "GroovyNFTs.sol/GroovyNFTs.json"
+        }
+      }
+    },
+    "/home/a/Documents/github/nftee/src/test/GroovyNFTs.t.sol": {
+      "lastModificationDate": 1649043263559,
+      "contentHash": "06eb6764201ecdb4b791f17b20f74e8b",
+      "sourceName": "src/test/GroovyNFTs.t.sol",
+      "solcConfig": {
+        "settings": {
+          "optimizer": {
+            "enabled": true,
+            "runs": 1000
+          },
+          "outputSelection": {
+            "*": {
+              "": [
+                "ast"
+              ],
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers"
+              ]
+            }
+          },
+          "evmVersion": "london"
+        }
+      },
+      "imports": [
+        "lib/ds-test/src/test.sol",
+        "lib/forge-std/src/Vm.sol",
+        "lib/forge-std/src/stdlib.sol",
+        "lib/openzeppelin-contracts/contracts/access/Ownable.sol",
+        "lib/openzeppelin-contracts/contracts/utils/Context.sol",
+        "lib/openzeppelin-contracts/contracts/utils/Strings.sol",
+        "lib/solmate/src/tokens/ERC20.sol",
+        "lib/solmate/src/tokens/ERC721.sol",
+        "src/GroovyNFTs.sol",
+        "src/test/utils/Console.sol",
+        "src/test/utils/DSTestPlus.sol"
+      ],
+      "versionRequirement": "=0.8.12",
+      "artifacts": {
+        "GroovyNFTsTest": {
+          "0.8.12+commit.f00d7308.Linux.gcc": "GroovyNFTs.t.sol/GroovyNFTsTest.json"
+        }
+      }
+    },
+    "/home/a/Documents/github/nftee/src/test/utils/Console.sol": {
+      "lastModificationDate": 1649034875913,
+      "contentHash": "3e26e9b6c0b6ad907d2e1418840b999d",
+      "sourceName": "src/test/utils/Console.sol",
+      "solcConfig": {
+        "settings": {
+          "optimizer": {
+            "enabled": true,
+            "runs": 1000
+          },
+          "outputSelection": {
+            "*": {
+              "": [
+                "ast"
+              ],
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers"
+              ]
+            }
+          },
+          "evmVersion": "london"
+        }
+      },
+      "imports": [],
+      "versionRequirement": "=0.8.12",
+      "artifacts": {}
+    },
+    "/home/a/Documents/github/nftee/src/test/utils/DSTestPlus.sol": {
+      "lastModificationDate": 1649034875913,
+      "contentHash": "d4509e60033dc1612e8a1f3a5dd6f601",
+      "sourceName": "src/test/utils/DSTestPlus.sol",
+      "solcConfig": {
+        "settings": {
+          "optimizer": {
+            "enabled": true,
+            "runs": 1000
+          },
+          "outputSelection": {
+            "*": {
+              "": [
+                "ast"
+              ],
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers"
+              ]
+            }
+          },
+          "evmVersion": "london"
+        }
+      },
+      "imports": [
+        "lib/ds-test/src/test.sol",
+        "lib/forge-std/src/Vm.sol",
+        "lib/forge-std/src/stdlib.sol",
+        "lib/solmate/src/tokens/ERC20.sol",
+        "src/test/utils/Console.sol"
+      ],
+      "versionRequirement": "=0.8.12",
+      "artifacts": {}
+    }
+  }
+}
