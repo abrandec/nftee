@@ -5,16 +5,16 @@ Groovy NFTs (on chain!)
 
 ## Getting Started
 
-Click `use this template` on [Github](https://github.com/abigger87/NFTees) to create a new repository with this repo as the initial state.
+Click `use this template` on [Github](https://github.com/abrandec/NFTee) to create a new repository with this repo as the initial state.
 
 Or, if your repo already exists, run:
 ```sh
-forge init --template https://github.com/abigger87/NFTees
+forge init --template https://github.com/abrandec/NFTee
 git submodule update --init --recursive
 forge install
 ```
 
-Run `make rename` to rename all instances of `NFTees` with the name of your project/repository.
+Run `make rename` to rename all instances of `NFTee` with the name of your project/repository.
 
 ## Blueprint
 
