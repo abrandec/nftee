@@ -9,7 +9,7 @@
     ],
     "repository": {
         "type": "git",
-        "url": "git+https://github.com/abrandec/NFTees.git"
+        "url": "git+https://github.com/abrandec/NFTee.git"
     },
     "devDependencies": {
         "prettier": "^2.3.1",
