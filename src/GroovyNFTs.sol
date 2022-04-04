@@ -1,5 +1,5 @@
 // SPDX-License-Identifier: AGPL-3.0-only
-pragma solidity >=0.8.4;
+pragma solidity ^0.8.9;
 
 import "solmate/tokens/ERC721.sol";
 import "openzeppelin-contracts/contracts/utils/Strings.sol";
@@ -64,6 +64,7 @@ contract GroovyNFTs is ERC721, Ownable {
         // I need 0xC0FFEE
         // Bitmask using AND (Mask off)
         // Ignores first 2 bits (C), had to do for padding. We will be shifting the stack in a... bit.
+        // This has to change. Stack is too damn deep to declare anything more.  Make it more algorithmic or some shit
         uint256 mask0 = 0x80000000000000000000000000000000000000000000000000000000FFFFFFFF;
         uint256 mask1 = 0x800000000000000000000000000000000000000000000000FFFFFFFF00000000;
         uint256 mask2 = 0x8000000000000000000000000000000000000000FFFFFFFF0000000000000000;
@@ -83,10 +84,10 @@ contract GroovyNFTs is ERC721, Ownable {
         uint256 a1 = (attributes_ & mask1) >> 192; // 🎶 Take it back now, ya'll 🎶
         uint256 a2 = (attributes_ & mask2) >> 160; // 🎶 One hop this time 🎶
         uint256 a3 = (attributes_ & mask3) >> 128; // 🎶 Right foot, let's stomp 🎶
-        uint256 a4 = (attributes_ & mask4) >> 96; // 🎶 Left foot, let's stomp 🎶
-        uint256 a5 = (attributes_ & mask5) >> 64; // 🎶 Cha cha real smooth 🎶
-        uint256 a6 = (attributes_ & mask6) >> 32; // 🎶 Turn it out 🎶
-        uint256 a7 = attributes_ & mask7;         // 🎶 To the left 🎶
+        uint256 a4 = (attributes_ & mask4) >> 96;  // 🎶 Left foot, let's stomp 🎶
+        uint256 a5 = (attributes_ & mask5) >> 64;  // 🎶 Cha cha real smooth 🎶
+        uint256 a6 = (attributes_ & mask6) >> 32;  // 🎶 Turn it out 🎶
+        uint256 a7 = attributes_ & mask7;          // 🎶 To the left 🎶
 
         // Already got a stack too deep below
       /*   return

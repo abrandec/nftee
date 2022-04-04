@@ -254,8 +254,8 @@
       "artifacts": {}
     },
     "/home/a/Documents/github/nftee/src/GroovyNFTs.sol": {
-      "lastModificationDate": 1649072312579,
-      "contentHash": "7211720aee4ff3dd067f1e5a23e1a6de",
+      "lastModificationDate": 1649072854439,
+      "contentHash": "28fef47d3dab342f6abebba35e851f7e",
       "sourceName": "src/GroovyNFTs.sol",
       "solcConfig": {
         "settings": {
@@ -285,7 +285,7 @@
         "lib/openzeppelin-contracts/contracts/utils/Strings.sol",
         "lib/solmate/src/tokens/ERC721.sol"
       ],
-      "versionRequirement": ">=0.8.4",
+      "versionRequirement": "^0.8.9",
       "artifacts": {
         "GroovyNFTs": {
           "0.8.12+commit.f00d7308.Linux.gcc": "GroovyNFTs.sol/GroovyNFTs.json"
