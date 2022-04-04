@@ -63,7 +63,7 @@ contract GroovyNFTs is ERC721, Ownable {
         // removes 14 SSLOADS & SSTORES total
         // I need 0xC0FFEE
         // Bitmask using AND (Mask off)
-        // Ignores first 2 bits (C), had to do for padding. We will be shifting the stack in a... bit.
+        // Ignores first bit (8), had to do for padding. We will be shifting the stack in a... bit.
         // This has to change. Stack is too damn deep to declare anything more.  Make it more algorithmic or some shit
         uint256 mask0 = 0x80000000000000000000000000000000000000000000000000000000FFFFFFFF;
         uint256 mask1 = 0x800000000000000000000000000000000000000000000000FFFFFFFF00000000;
