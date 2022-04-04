@@ -254,8 +254,8 @@
       "artifacts": {}
     },
     "/home/a/Documents/github/nftee/src/GroovyNFTs.sol": {
-      "lastModificationDate": 1649069377912,
-      "contentHash": "3fd943050eac00d937821ef333792247",
+      "lastModificationDate": 1649070528932,
+      "contentHash": "3c26c40b28c36f76876cad4cfe094633",
       "sourceName": "src/GroovyNFTs.sol",
       "solcConfig": {
         "settings": {

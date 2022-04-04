@@ -17,13 +17,17 @@ contract GroovyNFTs is ERC721, Ownable {
     uint256 public constant TOTAL_SUPPLY = 10_000;
     uint256 public constant MINT_PRICE = 0.08 ether;
 
-    
+
     mapping(uint256 => uint256) public attributes;
+
+    address public immutable base64Addr;
 
     constructor(
         string memory _name,
-        string memory _symbol
+        string memory _symbol,
+        address _base64Addr
     ) ERC721(_name, _symbol) {
+        base64Addr = _base64Addr;
     }
 
 
@@ -56,7 +60,7 @@ contract GroovyNFTs is ERC721, Ownable {
             revert NonExistentTokenURI();
         }
 
-        // reduces 8 SSLOADs & 8 SSTOREs
+        // removes 14 SSLOADS & SSTORES total
         // I need 0xC0FFEE
         // Bitmask using AND (Mask off)
         // Ignores first 2 bits (C), had to do for padding. We will be shifting the stack in a... bit.
