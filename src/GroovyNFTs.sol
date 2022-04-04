@@ -71,14 +71,28 @@ contract GroovyNFTs is ERC721, Ownable {
         uint256 mask4 = 0x800000000000000000000000FFFFFFFF00000000000000000000000000000000;
         uint256 mask5 = 0x8000000000000000FFFFFFFF0000000000000000000000000000000000000000;
         uint256 mask6 = 0x80000000FFFFFFFF000000000000000000000000000000000000000000000000;
-        uint256 mask7 = 0x80FFFFFF00000000000000000000000000000000000000000000000000000000;
-        //                 ^ 0x80 gives us 7 booleans, max val of attribute #7 to 16,777,215
+        uint256 mask7 = 0xFFFFFFFF00000000000000000000000000000000000000000000000000000000;
+        //                 ^ Can use 0x80 to give us 7 booleans, setting the max val of attribute #7 to 16,777,215
         // If you wanna be weird you can get 56 free booleans doing this every 25 bits (eg. Every FFFFFFFF -> 80FFFFFF)
 
-        return
+        uint256 attributes_ = attributes[tokenId];
+
+        // # from each attribute
+        // This is how we get attributes 😭
+        uint256 a0 = (attributes_ & mask0) >> 224; // 🎶 To the left 🎶
+        uint256 a1 = (attributes_ & mask1) >> 192; // 🎶 Take it back now, ya'll 🎶
+        uint256 a2 = (attributes_ & mask2) >> 160; // 🎶 One hop this time 🎶
+        uint256 a3 = (attributes_ & mask3) >> 128; // 🎶 Right foot, let's stomp 🎶
+        uint256 a4 = (attributes_ & mask4) >> 96; // 🎶 Left foot, let's stomp 🎶
+        uint256 a5 = (attributes_ & mask5) >> 64; // 🎶 Cha cha real smooth 🎶
+        uint256 a6 = (attributes_ & mask6) >> 32; // 🎶 Turn it out 🎶
+        uint256 a7 = attributes_ & mask7;         // 🎶 To the left 🎶
+
+        // Already got a stack too deep below
+      /*   return
             bytes(baseURI).length > 0
                 ? string(abi.encodePacked(baseURI, tokenId.toString()))
-                : "";
+                : ""; */
     }
 
     // free tokens!
