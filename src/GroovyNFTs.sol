@@ -17,7 +17,16 @@ contract GroovyNFTs is ERC721, Ownable {
     uint256 public constant TOTAL_SUPPLY = 10_000;
     uint256 public constant MINT_PRICE = 0.08 ether;
 
-
+      
+    // will have a diagram on how to reconstruct this
+    string baseSVG = "<svg xmlns='http://www.w3.org/2000/svg'>";
+    string filter = "<filter id='";
+    string f2 = "'><feTurbulence baseFrequency='";
+    string f3 = "'/><feColorMatrix values='";
+    string f4 = "'></filter>";
+    string f5 = "'/><feComponentTransfer><feFuncR type='table' tableValues='0 .02 .03 .03 .09 .12 .27 .91 .3 .03 0 0'/><feFuncG type='table' tableValues='.01 .09 .16 .18 .38 .48 .54 .73 .33 .09 .01 .01'/><feFuncB type='table' tableValues='.03 .17 .3 .25 .37 .42 .42 .6 .17 .01 0 0'/></feComponentTransfer";
+    string path = "<rect width='350' height='350' filter='url(#stars)'/><rect width='350' height='350' filter='url(#clouds2)' opacity='.01'/><rect width='350' height='350' filter='url(#clouds)' opacity='.3'/><path id='myPath2' fill='none' stroke-miterlimit='10'd=' M 300 200 A 100 100 0 1 1 300 197'/>";
+  
     mapping(uint256 => uint256) public attributes;
 
     address public immutable base64Addr;
@@ -48,7 +57,7 @@ contract GroovyNFTs is ERC721, Ownable {
     }
 
 
-    /// CHANGE ALOT
+
     function tokenURI(uint256 tokenId)
         public
         view
@@ -59,6 +68,9 @@ contract GroovyNFTs is ERC721, Ownable {
         if (ownerOf[tokenId] == address(0)) {
             revert NonExistentTokenURI();
         }
+
+
+        uint256 attributes_ = attributes[tokenId];
 
         // removes 14 SSLOADS & SSTORES total
         // I need 0xC0FFEE
@@ -75,19 +87,14 @@ contract GroovyNFTs is ERC721, Ownable {
         uint256 mask7 = 0xFFFFFFFF00000000000000000000000000000000000000000000000000000000;
         //                 ^ Can use 0x80 to give us 7 booleans, setting the max val of attribute #7 to 16,777,215
         // If you wanna be weird you can get 56 free booleans doing this every 25 bits (eg. Every FFFFFFFF -> 80FFFFFF)
-
-        uint256 attributes_ = attributes[tokenId];
-
-        // # from each attribute
-        // This is how we get attributes 😭
-        uint256 a0 = (attributes_ & mask0) >> 224; // 🎶 To the left 🎶
-        uint256 a1 = (attributes_ & mask1) >> 192; // 🎶 Take it back now, ya'll 🎶
-        uint256 a2 = (attributes_ & mask2) >> 160; // 🎶 One hop this time 🎶
-        uint256 a3 = (attributes_ & mask3) >> 128; // 🎶 Right foot, let's stomp 🎶
-        uint256 a4 = (attributes_ & mask4) >> 96;  // 🎶 Left foot, let's stomp 🎶
-        uint256 a5 = (attributes_ & mask5) >> 64;  // 🎶 Cha cha real smooth 🎶
-        uint256 a6 = (attributes_ & mask6) >> 32;  // 🎶 Turn it out 🎶
-        uint256 a7 = attributes_ & mask7;          // 🎶 To the left 🎶
+        
+        // use casting (eg. uint8 ex = uin8(a); a is a uint256)
+        // Time to get shifty
+        for (uint256 i = 1; i < 8;) {
+            uint32 mask = 0x80000000; // amount of bits to throw away (7)
+            attributes_ >> (32 * i);
+            unchecked { ++i; }
+        }
 
         // Already got a stack too deep below
       /*   return
