@@ -61,21 +61,72 @@ contract GroovyNFTs is ERC721, Ownable {
 
         // warm load attibutes of tokenID
         uint256 attributes_ = attributes[tokenId];
-        // Attributes split up into an array
-        bytes4[] memory attributesDisplay = new bytes4[](7);
-        // Time to get shifty
-        for (uint256 i = 1; i < 8;) {
-            // amount of bits to shift
-            uint256 shift = 32 * i;
+        // Compacts vv nicely
+        uint32 a0;
+        uint32 a1;
+        uint32 a2;
+        uint32 a3;
+        uint32 a4;
+        uint32 a5;
+        uint32 a6;
+        uint32 a7;
+       
+        // will explain later.  Thank you v much Optimism team!
+        assembly {
+            a0 := and(
+                    attributes_,
+                    0x00000000000000000000000000000000000000000000000000000000FFFFFFFF
+            )
 
-            assembly {
-            // mstore result to element in array (loading 32 * i bits at a time).
-            // To get the result, we shift attributes 32 * i bits to the left.  
-            // Nice thing is downcasting to a bytes4 is it already masks off the last 28 bytes
-            mstore(mload(add(attributesDisplay, shift)), shl(shift, attributes_))
-            }
-            // Will never overflow unless you're a magician
-            unchecked { ++i; }
+            a1 := shr(
+                80,
+                and(
+                    attributes_,
+                    0x000000000000000000000000000000000000000000000000FFFFFFFF00000000)
+            )
+
+            a2 := shr(
+                40,
+                and(
+                    attributes_,
+                    0x0000000000000000000000000000000000000000FFFFFFFF0000000000000000)
+            )
+
+            a3 := shr(
+                40,
+                and(
+                    attributes_,
+                    0x00000000000000000000000000000000FFFFFFFF000000000000000000000000)
+            )
+
+            a4 := shr(
+                40,
+                and(
+                    attributes_,
+                    0x000000000000000000000000FFFFFFFF00000000000000000000000000000000)
+            )
+
+            a5 := shr(
+                40,
+                and(
+                    attributes_,
+                    0x0000000000000000FFFFFFFF0000000000000000000000000000000000000000)
+            )
+
+            a6 := shr(
+                40,
+                and(
+                    attributes_,
+                    0x00000000FFFFFFFF000000000000000000000000000000000000000000000000)
+            )
+
+            a7 := shr(
+                40,
+                and(
+                    attributes_,
+                    0xFFFFFFFF00000000000000000000000000000000000000000000000000000000)
+            )
+            
         }
 
        
@@ -86,6 +137,7 @@ contract GroovyNFTs is ERC721, Ownable {
                 : ""; */
     }
 
+   
     // free tokens!
     function withdrawPayments(address payable payee) external onlyOwner {
         uint256 balance = address(this).balance;
