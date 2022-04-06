@@ -181,7 +181,7 @@ contract GroovyNFTs is ERC721, Ownable {
             )
 
             a4 := shr(
-                124,
+                128,
                 and(
                     attributes_,
                     0x000000000000000000000000FFFFFFFF00000000000000000000000000000000)
