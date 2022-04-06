@@ -31,7 +31,6 @@ contract GroovyNFTs is ERC721, Ownable {
         base64Addr = _base64Addr;
     }
 
-
     function mintTo(address recipient) public payable returns (uint256) {
         uint256 newTokenId = ++currentTokenId;
 
@@ -62,60 +61,54 @@ contract GroovyNFTs is ERC721, Ownable {
                     a7
             )
 
-            attributes_ := shr(
-                32,
-                or(
-                    attributes_,
-                    a6
-                )
+            attributes_ := or(
+                attributes_,
+                shr(
+                    32,
+                    a6)   
             )
 
-            attributes_ := shr(
-                64,
-                or(
-                    attributes_,
-                    a5
-                )
+            attributes_ := or(
+                attributes_,
+                shr(
+                    64,
+                    a5)
             )
 
-            attributes_ := shr(
-                96,
-                or(
-                    attributes_,
-                    a4
-                )
+            attributes_ := or(
+                attributes_,
+                shr(
+                    96,
+                    a4)
             )
 
-            attributes_ := shr(
-                128,
-                or(
-                    attributes_,
+            attributes_ := or(
+                attributes_,
+                shr(
+                    128,
                     a3
                 )
             )
 
-            attributes_ := shr(
-                160,
-                or(
-                    attributes_,
-                    a2
-                )
+            attributes_ := or(
+                attributes_,
+                shr(
+                    160,
+                    a2)
             )
 
-            attributes_ := shr(
-                196,
-                or(
-                    attributes_,
-                    a1
-                )
+            attributes_ := or(
+                attributes_,
+                shr(
+                    196,
+                    a1)
             )
 
-            attributes_ := shr(
-                224,
-                or(
-                    attributes_,
-                    a0
-                )
+            attributes_ := or(
+                attributes_,
+                shr(
+                    224,
+                    a0)
             )
           
         }
