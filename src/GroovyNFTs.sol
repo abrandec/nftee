@@ -19,7 +19,7 @@ contract GroovyNFTs is ERC721, Ownable {
 
       
     // will have a diagram on how to reconstruct this
-    string baseSVG = "<svg xmlns='http://www.w3.org/2000/svg'>";
+    string baseSVG = "<svg xmlns='http://www.w3.org/2000/svg'>"; // needing that link is kinda bs
     string filter = "<filter id='";
     string f2 = "'><feTurbulence baseFrequency='";
     string f3 = "'/><feColorMatrix values='";
@@ -41,23 +41,21 @@ contract GroovyNFTs is ERC721, Ownable {
 
 
     function mintTo(address recipient) public payable returns (uint256) {
-        // warm slot like I peed my pants
+        // preload warm slot
         currentTokenId;
-        uint32 trimmedId32 = uint32(currentTokenId);
         uint256 newTokenId = ++currentTokenId;
-
         if (newTokenId > TOTAL_SUPPLY) {
             revert MaxSupply();
         }
 
-
-    
+        // cut attributes[tokenId] into 8 pieces and iterate each piece by 1
+        // Once we got this down we can randomize the value (VRF, will be difficult to "throw away" values)
         _safeMint(recipient, newTokenId);
         return newTokenId;
     }
 
 
-
+    // Best function to bake a crazy amt of functionality into
     function tokenURI(uint256 tokenId)
         public
         view
@@ -69,34 +67,26 @@ contract GroovyNFTs is ERC721, Ownable {
             revert NonExistentTokenURI();
         }
 
-
         uint256 attributes_ = attributes[tokenId];
-
-        // removes 14 SSLOADS & SSTORES total
-        // I need 0xC0FFEE
-        // Bitmask using AND (Mask off)
-        // Ignores first bit (8), had to do for padding. We will be shifting the stack in a... bit.
-        // This has to change. Stack is too damn deep to declare anything more.  Make it more algorithmic or some shit
-        uint256 mask0 = 0x80000000000000000000000000000000000000000000000000000000FFFFFFFF;
-        uint256 mask1 = 0x800000000000000000000000000000000000000000000000FFFFFFFF00000000;
-        uint256 mask2 = 0x8000000000000000000000000000000000000000FFFFFFFF0000000000000000;
-        uint256 mask3 = 0x80000000000000000000000000000000FFFFFFFF000000000000000000000000;
-        uint256 mask4 = 0x800000000000000000000000FFFFFFFF00000000000000000000000000000000;
-        uint256 mask5 = 0x8000000000000000FFFFFFFF0000000000000000000000000000000000000000;
-        uint256 mask6 = 0x80000000FFFFFFFF000000000000000000000000000000000000000000000000;
-        uint256 mask7 = 0xFFFFFFFF00000000000000000000000000000000000000000000000000000000;
-        //                 ^ Can use 0x80 to give us 7 booleans, setting the max val of attribute #7 to 16,777,215
-        // If you wanna be weird you can get 56 free booleans doing this every 25 bits (eg. Every FFFFFFFF -> 80FFFFFF)
-        
+        uint256 mask = 0xFFFFFFFF00000000000000000000000000000000000000000000000000000000;
         // use casting (eg. uint8 ex = uin8(a); a is a uint256)
         // Time to get shifty
         for (uint256 i = 1; i < 8;) {
-            uint32 mask = 0x80000000; // amount of bits to throw away (7)
-            attributes_ >> (32 * i);
+            // amount of bits to shift
+            uint256 shift = 32 * i;
+            // change
+            uint256 a0; 
+            assembly {
+            // set memory pointer (0x40 good mem pt)
+            let ptr := mload(0x40)
+            mstore(0x40, shr(shift, attributes_))
+            // mask off everything after 0xFFFFFFFF
+            a0 := and(0x40, mask)
+            }
+            // Will never overflow unless you're a magician
             unchecked { ++i; }
         }
 
-        // Already got a stack too deep below
       /*   return
             bytes(baseURI).length > 0
                 ? string(abi.encodePacked(baseURI, tokenId.toString()))
