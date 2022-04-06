@@ -121,8 +121,7 @@ contract GroovyNFTs is ERC721, Ownable {
         }
 
         attributes[newTokenId] = attributes_;
-        // cut attributes[tokenId] into 8 pieces and iterate each piece by 1
-        // Once we got this down we can randomize the value (VRF, will be difficult to "throw away" values)
+        
         _safeMint(recipient, newTokenId);
         return newTokenId;
     }
