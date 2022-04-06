@@ -59,25 +59,26 @@ contract GroovyNFTs is ERC721, Ownable {
             revert NonExistentTokenURI();
         }
 
+        // warm load attibutes of tokenID
         uint256 attributes_ = attributes[tokenId];
-        uint256 mask = 0xFFFFFFFF00000000000000000000000000000000000000000000000000000000;
+        // Attributes split up into an array
+        bytes4[] memory attributesDisplay = new bytes4[](7);
         // Time to get shifty
         for (uint256 i = 1; i < 8;) {
             // amount of bits to shift
             uint256 shift = 32 * i;
-            // change
-            uint256 a0; 
+
             assembly {
-            // set memory pointer (0x40 good mem pt)
-            let ptr := mload(0x40)
-            // store result to ptr.  shr is bitshifting
-            mstore(0x40, shr(shift, attributes_))
-            // mask off everything after 0xFFFFFFFF
-            a0 := and(0x40, mask)
+            // mstore result to element in array (loading 32 * i bits at a time).
+            // To get the result, we shift attributes 32 * i bits to the left.  
+            // Nice thing is downcasting to a bytes4 is it already masks off the last 28 bytes
+            mstore(mload(add(attributesDisplay, shift)), shl(shift, attributes_))
             }
             // Will never overflow unless you're a magician
             unchecked { ++i; }
         }
+
+       
 
       /*   return
             bytes(baseURI).length > 0
