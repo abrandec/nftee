@@ -17,18 +17,9 @@ contract GroovyNFTs is ERC721, Ownable {
     uint256 public constant TOTAL_SUPPLY = 10_000;
     uint256 public constant MINT_PRICE = 0.08 ether;
 
-      
-    // will have a diagram on how to reconstruct this
-    string baseSVG = "<svg xmlns='http://www.w3.org/2000/svg'>"; // needing that link is kinda bs
-    string filter = "<filter id='";
-    string f2 = "'><feTurbulence baseFrequency='";
-    string f3 = "'/><feColorMatrix values='";
-    string f4 = "'></filter>";
-    string f5 = "'/><feComponentTransfer><feFuncR type='table' tableValues='0 .02 .03 .03 .09 .12 .27 .91 .3 .03 0 0'/><feFuncG type='table' tableValues='.01 .09 .16 .18 .38 .48 .54 .73 .33 .09 .01 .01'/><feFuncB type='table' tableValues='.03 .17 .3 .25 .37 .42 .42 .6 .17 .01 0 0'/></feComponentTransfer";
-    string path = "<rect width='350' height='350' filter='url(#stars)'/><rect width='350' height='350' filter='url(#clouds2)' opacity='.01'/><rect width='350' height='350' filter='url(#clouds)' opacity='.3'/><path id='myPath2' fill='none' stroke-miterlimit='10'd=' M 300 200 A 100 100 0 1 1 300 197'/>";
-  
     mapping(uint256 => uint256) public attributes;
 
+    // Why waste precious gas if we're gonna use this for mult. projects
     address public immutable base64Addr;
 
     constructor(
@@ -56,6 +47,7 @@ contract GroovyNFTs is ERC721, Ownable {
 
 
     // Best function to bake a crazy amt of functionality into
+    // Won't increase gas for minters since it's a hardcoded view func
     function tokenURI(uint256 tokenId)
         public
         view
@@ -69,7 +61,6 @@ contract GroovyNFTs is ERC721, Ownable {
 
         uint256 attributes_ = attributes[tokenId];
         uint256 mask = 0xFFFFFFFF00000000000000000000000000000000000000000000000000000000;
-        // use casting (eg. uint8 ex = uin8(a); a is a uint256)
         // Time to get shifty
         for (uint256 i = 1; i < 8;) {
             // amount of bits to shift
@@ -79,6 +70,7 @@ contract GroovyNFTs is ERC721, Ownable {
             assembly {
             // set memory pointer (0x40 good mem pt)
             let ptr := mload(0x40)
+            // store result to ptr.  shr is bitshifting
             mstore(0x40, shr(shift, attributes_))
             // mask off everything after 0xFFFFFFFF
             a0 := and(0x40, mask)
