@@ -62,7 +62,33 @@ contract ERCIDKTest is DSTest, stdCheats {
         ercIDK.mintTo(address(1));
     }
 
-    function testEmit() public {}
+    function testTransfer() public {
+        ercIDK.mintTo(address(1));
+        vm.startPrank(address(1));
+
+        ercIDK._transfer(address(2), uint256(0));
+    }
+
+    function testFailTransfer() public {
+        ercIDK.mintTo(address(1));
+        ercIDK._transfer(address(2), uint256(0));
+    }
+
+    function testFailPrepayGas() public {
+        uint256 slot = stdStore
+            .target(address(ercIDK))
+            .sig("currentTokenId()")
+            .find();
+        bytes32 loc = bytes32(slot);
+        bytes32 mockedCurrentTokenId = bytes32(abi.encode(10000));
+        vm.store(address(ercIDK), loc, mockedCurrentTokenId);
+        ercIDK.prepayGas(uint256(10001));
+    }
+
+    function testPrepayGas() public {
+        ercIDK.prepayGas(uint256(10000));
+        ercIDK._mintTo(address(1));
+    }
 }
 
 contract Receiver {

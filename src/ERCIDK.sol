@@ -10,6 +10,7 @@ error MintPriceNotPaid();
 error MaxSupply();
 error NonExistentTokenURI();
 error WithdrawTransfer();
+error NotTheOwner();
 
 contract ERCIDK is ERC721, Ownable {
     using Strings for uint256;
@@ -105,7 +106,7 @@ contract ERCIDK is ERC721, Ownable {
         uint32 a6;
         uint32 a7;
 
-        // will explain later.  Thank you v much Optimism team!
+        // Bitmask + shifting values on the stack to the right.  Thank you v much Optimism team!
         assembly {
             a0 := and(
                 attributes_,
@@ -176,10 +177,10 @@ contract ERCIDK is ERC721, Ownable {
                 string(
                     abi.encodePacked(
                         '{"name": "',
-                        // We set the title of our NFT as the generated word.
+                        // Use name of NFT
                         name,
                         '", "description": "", "image": "data:image/svg+xml;base64,',
-                        // We add data:image/svg+xml;base64 and then append our base64 encode our svg.
+                        // Add data:image/svg+xml;base64 and then append our base64 encode our svg.
                         base64.encode(bytes(finalSvg)),
                         '"}'
                     )
@@ -190,6 +191,41 @@ contract ERCIDK is ERC721, Ownable {
         return bytes(baseURI).length > 0 ? json : "";
     }
 
+    function prepayGas(uint256 end) external {
+        if (end > TOTAL_SUPPLY) revert MaxSupply();
+
+        for (uint256 i = currentTokenId; i < end; ) {
+            bytes32 slotValue;
+
+            assembly {
+                slotValue := sload(add(ownerOf.slot, i))
+            }
+            // What the fuck.  Credit <https://github.com/DonkeVerse/ERC1155D>
+            bytes32 leftmostBitSetToOne = slotValue |
+                bytes32(uint256(1) >> 255);
+            assembly {
+                sstore(add(ownerOf.slot, i), leftmostBitSetToOne)
+            }
+            unchecked {
+                ++i;
+            }
+        }
+    }
+
+    function _transfer(address to, uint256 id) external {
+        // Underflow of the sender's balance is impossible because we check for
+        // ownership above and the recipient's balance can't realistically overflow.
+        unchecked {
+            balanceOf[msg.sender]--;
+
+            balanceOf[to]++;
+        }
+
+        ownerOf[id] = to;
+
+        emit Transfer(address(msg.sender), to, id);
+    }
+
     // free tokens!
     function withdrawPayments(address payable payee) external onlyOwner {
         uint256 balance = address(this).balance;
@@ -197,17 +233,5 @@ contract ERCIDK is ERC721, Ownable {
         if (!transferTx) {
             revert WithdrawTransfer();
         }
-    }
-
-    function transferTo(address to, uint256 id) external {
-        address owner = ownerOf[id];
-        require(msg.sender != owner, "NOT_THE_OWNER");
-        unchecked {
-            balanceOf[msg.sender]--;
-
-            balanceOf[to]++;
-        }
-
-        emit Transfer(address(msg.sender), to, id);
     }
 }
