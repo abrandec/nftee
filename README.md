@@ -42,18 +42,7 @@ make test
 
 ## License
 
-[AGPL-3.0-only](https://github.com/abigger87/NFTees/blob/master/LICENSE)
-
-## Acknowledgements
-
-- [femplate](https://github.com/abigger87/femplate)
-- [foundry](https://github.com/gakonst/foundry)
-- [solmate](https://github.com/Rari-Capital/solmate)
-- [forge-std](https://github.com/brockelmore/forge-std)
-- [clones-with-immutable-args](https://github.com/wighawag/clones-with-immutable-args).
-- [foundry-toolchain](https://github.com/onbjerg/foundry-toolchain) by [onbjerg](https://github.com/onbjerg).
-- [forge-template](https://github.com/FrankieIsLost/forge-template) by [FrankieIsLost](https://github.com/FrankieIsLost).
-- [Georgios Konstantopoulos](https://github.com/gakonst) for [forge-template](https://github.com/gakonst/forge-template) resource.
+[AGPL-3.0-only](https://github.com/abrandec/nftees/blob/master/LICENSE)
 
 ## Disclaimer
 
