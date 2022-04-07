@@ -106,7 +106,7 @@ contract GroovyNFTs is ERC721, Ownable {
             attributes_ := add(
                 attributes_,
                 shl(
-                    196,
+                    192,
                     a6
                 )
             )
