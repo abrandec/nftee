@@ -12,6 +12,8 @@ error WithdrawTransfer();
 
 contract GroovyNFTs is ERC721, Ownable {
     using Strings for uint256;
+    using Strings for uint256;
+
     string public baseURI;
     uint256 public currentTokenId;
     // Max supply can be 4,294,967,295 if using 8 attributes
@@ -49,68 +51,73 @@ contract GroovyNFTs is ERC721, Ownable {
         uint32 a4;
         uint32 a5;
         uint32 a6;
-        uint32 a7;
+        uint32 a7; 
 
-        // Do something with da numbas
+        // Do something with da numbas right here
 
-        // OR the uint32s to the attribute, starting with attribute a7
+        // OR the uint32s to the attribute
         // Pretty much mash together the uint32s into a single uint256
         assembly {
-            attributes_ := or(
-                    attributes_,
-                    a7
+            attributes_ := add(
+                attributes_,
+                a0
             )
 
-            attributes_ := or(
+            attributes_ := add(
                 attributes_,
-                shr(
+                shl(
                     32,
-                    a6)   
+                    a1
+                )
             )
 
-            attributes_ := or(
+            attributes_ := add(
                 attributes_,
-                shr(
+                shl(
                     64,
-                    a5)
+                    a2
+                )
             )
 
-            attributes_ := or(
+            attributes_ := add(
                 attributes_,
-                shr(
+                shl(
                     96,
-                    a4)
-            )
-
-            attributes_ := or(
-                attributes_,
-                shr(
-                    128,
                     a3
                 )
             )
 
-            attributes_ := or(
+            attributes_ := add(
                 attributes_,
-                shr(
+                shl(
+                    128,
+                    a4
+                )
+            )
+
+            attributes_ := add(
+                attributes_,
+                shl(
                     160,
-                    a2)
+                    a5
+                )
             )
 
-            attributes_ := or(
+            attributes_ := add(
                 attributes_,
-                shr(
+                shl(
                     196,
-                    a1)
+                    a6
+                )
             )
 
-            attributes_ := or(
+            attributes_ := add(
                 attributes_,
-                shr(
+                shl(
                     224,
-                    a0)
+                    a7
+                )
             )
-          
         }
 
         attributes[newTokenId] = attributes_;
@@ -136,6 +143,7 @@ contract GroovyNFTs is ERC721, Ownable {
         // warm load attibutes of tokenID
         uint256 attributes_ = attributes[tokenId];
         // Compacts vv nicely
+        // Attributes
         uint32 a0;
         uint32 a1;
         uint32 a2;
