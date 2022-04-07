@@ -42,9 +42,7 @@ contract ERCIDK is ERC721, Ownable {
 
         // Already set to zero
         uint256 attributes_ = attributes[newTokenId];
-        // each attribute + assembly intruction takes 5 gas each
         // Load Attributes
-        // Setting a value takes 24 gas
         uint32 a0;
         uint32 a1;
         uint32 a2;
