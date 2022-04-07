@@ -4,33 +4,33 @@ pragma solidity ^0.8.9;
 import "solmate/tokens/ERC721.sol";
 import "openzeppelin-contracts/contracts/utils/Strings.sol";
 import "openzeppelin-contracts/contracts/access/Ownable.sol";
+import "./interfaces/Base64.sol";
 
 error MintPriceNotPaid();
 error MaxSupply();
 error NonExistentTokenURI();
 error WithdrawTransfer();
 
-contract GroovyNFTs is ERC721, Ownable {
+contract ERCIDK is ERC721, Ownable {
     using Strings for uint256;
-    using Strings for uint256;
+    using Strings for uint32;
 
     string public baseURI;
     uint256 public currentTokenId;
     // Max supply can be 4,294,967,295 if using 8 attributes
     uint256 public constant TOTAL_SUPPLY = 10_000;
-    uint256 public constant MINT_PRICE = 0.08 ether;
-
+    
     mapping(uint256 => uint256) public attributes;
 
     // Why waste precious gas if we're gonna use this for mult. projects
-    address public immutable base64Addr;
+    Base64 base64;
 
     constructor(
         string memory _name,
         string memory _symbol,
-        address _base64Addr
+        Base64 _base64
     ) ERC721(_name, _symbol) {
-        base64Addr = _base64Addr;
+        base64 = _base64;
     }
 
     function mintTo(address recipient) public payable returns (uint256) {
@@ -42,8 +42,9 @@ contract GroovyNFTs is ERC721, Ownable {
 
         // Already set to zero
         uint256 attributes_ = attributes[newTokenId];
-
+        // each attribute + assembly intruction takes 5 gas each
         // Load Attributes
+        // Setting a value takes 24 gas
         uint32 a0;
         uint32 a1;
         uint32 a2;
@@ -211,7 +212,23 @@ contract GroovyNFTs is ERC721, Ownable {
             
         }
 
-       
+        string memory finalSvg = string(abi.encodePacked());
+     
+       string memory json = base64.encode(
+           bytes(
+               string(
+                   abi.encodePacked(
+                       '{"name": "',
+                    // We set the title of our NFT as the generated word.
+                    name,
+                    '", "description": "", "image": "data:image/svg+xml;base64,',
+                    // We add data:image/svg+xml;base64 and then append our base64 encode our svg.
+                    base64.encode(bytes(finalSvg)),
+                    '"}'
+                   )
+               )
+           )
+       );
 
       /*   return
             bytes(baseURI).length > 0
@@ -228,4 +245,17 @@ contract GroovyNFTs is ERC721, Ownable {
             revert WithdrawTransfer();
         }
     }
+
+    function transferTo(address to, uint256 id) external {
+        address owner = ownerOf[id];
+        require (msg.sender != owner, "NOT_THE_OWNER");
+        unchecked {
+            balanceOf[msg.sender]--;
+
+            balanceOf[to]++;
+        }
+
+        emit Transfer(address(msg.sender), to, id);
+    }
+
 }
