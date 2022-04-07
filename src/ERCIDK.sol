@@ -54,7 +54,6 @@ contract ERCIDK is ERC721, Ownable {
 
         // Do something with da numbas right here
 
-        // OR the uint32s to the attribute
         // Pretty much mash together the uint32s into a single uint256
         assembly {
             attributes_ := add(attributes_, a0)
