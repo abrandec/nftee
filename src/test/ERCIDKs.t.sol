@@ -87,7 +87,7 @@ contract ERCIDKTest is DSTest, stdCheats {
 
     function testPrepayGas() public {
         ercIDK.prepayGas(uint256(10000));
-        ercIDK._mintTo(address(1));
+        ercIDK.mintTo(address(1));
     }
 }
 
