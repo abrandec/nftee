@@ -15,10 +15,10 @@ contract ERCIDKTest is DSTest, stdCheats {
     /// @dev Use forge-std Vm logic
     Vm public constant vm = Vm(HEVM_ADDRESS);
     StdStorage public stdStore;
-    
+
     ERCIDK public ercIDK;
     Base64 public base64;
-    
+
     function setUp() public {
         base64 = new Base64();
         ercIDK = new ERCIDK("GM", "GN", base64);
@@ -29,7 +29,10 @@ contract ERCIDKTest is DSTest, stdCheats {
     }
 
     function testFailMaxSupplyReach() public {
-        uint256 slot = stdStore.target(address(ercIDK)).sig("currentTokenId()").find();
+        uint256 slot = stdStore
+            .target(address(ercIDK))
+            .sig("currentTokenId()")
+            .find();
         bytes32 loc = bytes32(slot);
         bytes32 mockedCurrentTokenId = bytes32(abi.encode(10000));
         vm.store(address(ercIDK), loc, mockedCurrentTokenId);
@@ -59,9 +62,7 @@ contract ERCIDKTest is DSTest, stdCheats {
         ercIDK.mintTo(address(1));
     }
 
-    function testEmit() public {
-
-    }
+    function testEmit() public {}
 }
 
 contract Receiver {
@@ -70,7 +71,7 @@ contract Receiver {
         address from,
         uint256 id,
         bytes calldata data
-    ) external returns (bytes4){
+    ) external returns (bytes4) {
         return this.onERC721Received.selector;
     }
 }

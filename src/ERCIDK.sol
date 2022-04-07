@@ -19,7 +19,7 @@ contract ERCIDK is ERC721, Ownable {
     uint256 public currentTokenId;
     // Max supply can be 4,294,967,295 if using 8 attributes
     uint256 public constant TOTAL_SUPPLY = 10_000;
-    
+
     mapping(uint256 => uint256) public attributes;
 
     // Why waste precious gas if we're gonna use this for mult. projects
@@ -50,81 +50,35 @@ contract ERCIDK is ERC721, Ownable {
         uint32 a4;
         uint32 a5;
         uint32 a6;
-        uint32 a7; 
+        uint32 a7;
 
         // Do something with da numbas right here
 
         // OR the uint32s to the attribute
         // Pretty much mash together the uint32s into a single uint256
         assembly {
-            attributes_ := add(
-                attributes_,
-                a0
-            )
+            attributes_ := add(attributes_, a0)
 
-            attributes_ := add(
-                attributes_,
-                shl(
-                    32,
-                    a1
-                )
-            )
+            attributes_ := add(attributes_, shl(32, a1))
 
-            attributes_ := add(
-                attributes_,
-                shl(
-                    64,
-                    a2
-                )
-            )
+            attributes_ := add(attributes_, shl(64, a2))
 
-            attributes_ := add(
-                attributes_,
-                shl(
-                    96,
-                    a3
-                )
-            )
+            attributes_ := add(attributes_, shl(96, a3))
 
-            attributes_ := add(
-                attributes_,
-                shl(
-                    128,
-                    a4
-                )
-            )
+            attributes_ := add(attributes_, shl(128, a4))
 
-            attributes_ := add(
-                attributes_,
-                shl(
-                    160,
-                    a5
-                )
-            )
+            attributes_ := add(attributes_, shl(160, a5))
 
-            attributes_ := add(
-                attributes_,
-                shl(
-                    192,
-                    a6
-                )
-            )
+            attributes_ := add(attributes_, shl(192, a6))
 
-            attributes_ := add(
-                attributes_,
-                shl(
-                    224,
-                    a7
-                )
-            )
+            attributes_ := add(attributes_, shl(224, a7))
         }
 
         attributes[newTokenId] = attributes_;
-        
+
         _safeMint(recipient, newTokenId);
         return newTokenId;
     }
-
 
     // Best function to bake a crazy amt of functionality into
     // Won't increase gas for minters since it's a hardcoded view func
@@ -151,90 +105,92 @@ contract ERCIDK is ERC721, Ownable {
         uint32 a5;
         uint32 a6;
         uint32 a7;
-       
+
         // will explain later.  Thank you v much Optimism team!
         assembly {
             a0 := and(
-                    attributes_,
-                    0x00000000000000000000000000000000000000000000000000000000FFFFFFFF
+                attributes_,
+                0x00000000000000000000000000000000000000000000000000000000FFFFFFFF
             )
 
             a1 := shr(
                 32,
                 and(
                     attributes_,
-                    0x000000000000000000000000000000000000000000000000FFFFFFFF00000000)
+                    0x000000000000000000000000000000000000000000000000FFFFFFFF00000000
+                )
             )
 
             a2 := shr(
                 64,
                 and(
                     attributes_,
-                    0x0000000000000000000000000000000000000000FFFFFFFF0000000000000000)
+                    0x0000000000000000000000000000000000000000FFFFFFFF0000000000000000
+                )
             )
 
             a3 := shr(
                 96,
                 and(
                     attributes_,
-                    0x00000000000000000000000000000000FFFFFFFF000000000000000000000000)
+                    0x00000000000000000000000000000000FFFFFFFF000000000000000000000000
+                )
             )
 
             a4 := shr(
                 128,
                 and(
                     attributes_,
-                    0x000000000000000000000000FFFFFFFF00000000000000000000000000000000)
+                    0x000000000000000000000000FFFFFFFF00000000000000000000000000000000
+                )
             )
 
             a5 := shr(
                 160,
                 and(
                     attributes_,
-                    0x0000000000000000FFFFFFFF0000000000000000000000000000000000000000)
+                    0x0000000000000000FFFFFFFF0000000000000000000000000000000000000000
+                )
             )
 
             a6 := shr(
                 192,
                 and(
                     attributes_,
-                    0x00000000FFFFFFFF000000000000000000000000000000000000000000000000)
+                    0x00000000FFFFFFFF000000000000000000000000000000000000000000000000
+                )
             )
 
             a7 := shr(
                 224,
                 and(
                     attributes_,
-                    0xFFFFFFFF00000000000000000000000000000000000000000000000000000000)
+                    0xFFFFFFFF00000000000000000000000000000000000000000000000000000000
+                )
             )
-            
         }
 
         string memory finalSvg = string(abi.encodePacked());
-     
-       string memory json = base64.encode(
-           bytes(
-               string(
-                   abi.encodePacked(
-                       '{"name": "',
-                    // We set the title of our NFT as the generated word.
-                    name,
-                    '", "description": "", "image": "data:image/svg+xml;base64,',
-                    // We add data:image/svg+xml;base64 and then append our base64 encode our svg.
-                    base64.encode(bytes(finalSvg)),
-                    '"}'
-                   )
-               )
-           )
-       );
 
-      /*   return
-            bytes(baseURI).length > 0
-                ? string(abi.encodePacked(baseURI, tokenId.toString()))
-                : ""; */
+        string memory json = base64.encode(
+            bytes(
+                string(
+                    abi.encodePacked(
+                        '{"name": "',
+                        // We set the title of our NFT as the generated word.
+                        name,
+                        '", "description": "", "image": "data:image/svg+xml;base64,',
+                        // We add data:image/svg+xml;base64 and then append our base64 encode our svg.
+                        base64.encode(bytes(finalSvg)),
+                        '"}'
+                    )
+                )
+            )
+        );
+
+        return bytes(baseURI).length > 0 ? json : "";
     }
 
-   
     // free tokens!
     function withdrawPayments(address payable payee) external onlyOwner {
         uint256 balance = address(this).balance;
@@ -246,7 +202,7 @@ contract ERCIDK is ERC721, Ownable {
 
     function transferTo(address to, uint256 id) external {
         address owner = ownerOf[id];
-        require (msg.sender != owner, "NOT_THE_OWNER");
+        require(msg.sender != owner, "NOT_THE_OWNER");
         unchecked {
             balanceOf[msg.sender]--;
 
@@ -255,5 +211,4 @@ contract ERCIDK is ERC721, Ownable {
 
         emit Transfer(address(msg.sender), to, id);
     }
-
 }

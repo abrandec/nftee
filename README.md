@@ -1,7 +1,7 @@
-# NFTee • [![tests](https://github.com/abrandec/NFTee/actions/workflows/tests.yml/badge.svg)](https://github.com/abrandec/NFTee/actions/workflows/tests.yml) [![lints](https://github.com/abrandec/NFTee/actions/workflows/lints.yml/badge.svg)](https://github.com/abrandec/NFTee/actions/workflows/lints.yml) ![GitHub](https://img.shields.io/github/license/abrandec/NFTee)  ![GitHub package.json version](https://img.shields.io/github/package-json/v/abrandec/NFTee)
+# NFTee • [![tests](https://github.com/abrandec/nftee/actions/workflows/tests.yml/badge.svg)](https://github.com/abrandec/nftee/actions/workflows/tests.yml) [![lints](https://github.com/abrandec/nftee/actions/workflows/lints.yml/badge.svg)](https://github.com/abrandec/nftee/actions/workflows/lints.yml) ![GitHub](https://img.shields.io/github/license/abrandec/nftee)  ![GitHub package.json version](https://img.shields.io/github/package-json/v/abrandec/nftee)
 
 
-Groovy NFTs (on chain!)
+Cool NFTs with the image on chain!
 
 ## Getting Started
 

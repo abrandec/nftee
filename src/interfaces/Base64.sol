@@ -2,7 +2,5 @@
 
 contract Base64 {
     // just need the function signature
-    function encode(bytes memory data) external pure returns (string memory) {
-
-    }
+    function encode(bytes memory data) external pure returns (string memory) {}
 }

@@ -1,0 +1,453 @@
+{
+  "_format": "ethers-rs-sol-cache-3",
+  "paths": {
+    "artifacts": "out",
+    "sources": "src",
+    "tests": "test",
+    "libraries": [
+      "lib"
+    ]
+  },
+  "files": {
+    "/home/a/Documents/github/nftee/lib/ds-test/src/test.sol": {
+      "lastModificationDate": 1649038137453,
+      "contentHash": "5d45a46528eaf8a26f0a8d93669f3148",
+      "sourceName": "lib/ds-test/src/test.sol",
+      "solcConfig": {
+        "settings": {
+          "optimizer": {
+            "enabled": true,
+            "runs": 1000
+          },
+          "metadata": {
+            "bytecodeHash": "none"
+          },
+          "outputSelection": {
+            "*": {
+              "": [
+                "ast"
+              ],
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers"
+              ]
+            }
+          },
+          "evmVersion": "london"
+        }
+      },
+      "imports": [],
+      "versionRequirement": ">=0.4.23",
+      "artifacts": {
+        "DSTest": {
+          "0.8.12+commit.f00d7308.Linux.gcc": "test.sol/DSTest.json"
+        }
+      }
+    },
+    "/home/a/Documents/github/nftee/lib/forge-std/src/Vm.sol": {
+      "lastModificationDate": 1649038163436,
+      "contentHash": "5e242d192cc1a77ac825a45b4c89ef29",
+      "sourceName": "lib/forge-std/src/Vm.sol",
+      "solcConfig": {
+        "settings": {
+          "optimizer": {
+            "enabled": true,
+            "runs": 1000
+          },
+          "metadata": {
+            "bytecodeHash": "none"
+          },
+          "outputSelection": {
+            "*": {
+              "": [
+                "ast"
+              ],
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers"
+              ]
+            }
+          },
+          "evmVersion": "london"
+        }
+      },
+      "imports": [],
+      "versionRequirement": ">=0.6.0",
+      "artifacts": {
+        "Vm": {
+          "0.8.12+commit.f00d7308.Linux.gcc": "Vm.sol/Vm.json"
+        }
+      }
+    },
+    "/home/a/Documents/github/nftee/lib/forge-std/src/stdlib.sol": {
+      "lastModificationDate": 1649038163436,
+      "contentHash": "edff4c1f9c2c81f392ec796f11688f20",
+      "sourceName": "lib/forge-std/src/stdlib.sol",
+      "solcConfig": {
+        "settings": {
+          "optimizer": {
+            "enabled": true,
+            "runs": 1000
+          },
+          "metadata": {
+            "bytecodeHash": "none"
+          },
+          "outputSelection": {
+            "*": {
+              "": [
+                "ast"
+              ],
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers"
+              ]
+            }
+          },
+          "evmVersion": "london"
+        }
+      },
+      "imports": [
+        "lib/forge-std/src/Vm.sol"
+      ],
+      "versionRequirement": ">=0.6.0, <0.9.0",
+      "artifacts": {
+        "stdCheats": {
+          "0.8.12+commit.f00d7308.Linux.gcc": "stdlib.sol/stdCheats.json"
+        },
+        "stdError": {
+          "0.8.12+commit.f00d7308.Linux.gcc": "stdlib.sol/stdError.json"
+        },
+        "stdStorage": {
+          "0.8.12+commit.f00d7308.Linux.gcc": "stdlib.sol/stdStorage.json"
+        }
+      }
+    },
+    "/home/a/Documents/github/nftee/lib/openzeppelin-contracts/contracts/access/Ownable.sol": {
+      "lastModificationDate": 1649039381019,
+      "contentHash": "8398972af73b4e9e5ff3b31cad86234f",
+      "sourceName": "lib/openzeppelin-contracts/contracts/access/Ownable.sol",
+      "solcConfig": {
+        "settings": {
+          "optimizer": {
+            "enabled": true,
+            "runs": 1000
+          },
+          "metadata": {
+            "bytecodeHash": "none"
+          },
+          "outputSelection": {
+            "*": {
+              "": [
+                "ast"
+              ],
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers"
+              ]
+            }
+          },
+          "evmVersion": "london"
+        }
+      },
+      "imports": [
+        "lib/openzeppelin-contracts/contracts/utils/Context.sol"
+      ],
+      "versionRequirement": "^0.8.0",
+      "artifacts": {
+        "Ownable": {
+          "0.8.12+commit.f00d7308.Linux.gcc": "Ownable.sol/Ownable.json"
+        }
+      }
+    },
+    "/home/a/Documents/github/nftee/lib/openzeppelin-contracts/contracts/utils/Context.sol": {
+      "lastModificationDate": 1649039381069,
+      "contentHash": "5f2c5c4b6af2dd4551027144797bc8be",
+      "sourceName": "lib/openzeppelin-contracts/contracts/utils/Context.sol",
+      "solcConfig": {
+        "settings": {
+          "optimizer": {
+            "enabled": true,
+            "runs": 1000
+          },
+          "metadata": {
+            "bytecodeHash": "none"
+          },
+          "outputSelection": {
+            "*": {
+              "": [
+                "ast"
+              ],
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers"
+              ]
+            }
+          },
+          "evmVersion": "london"
+        }
+      },
+      "imports": [],
+      "versionRequirement": "^0.8.0",
+      "artifacts": {
+        "Context": {
+          "0.8.12+commit.f00d7308.Linux.gcc": "Context.sol/Context.json"
+        }
+      }
+    },
+    "/home/a/Documents/github/nftee/lib/openzeppelin-contracts/contracts/utils/Strings.sol": {
+      "lastModificationDate": 1649039381069,
+      "contentHash": "9c54c6c065d9e590fdcdd72c451425b9",
+      "sourceName": "lib/openzeppelin-contracts/contracts/utils/Strings.sol",
+      "solcConfig": {
+        "settings": {
+          "optimizer": {
+            "enabled": true,
+            "runs": 1000
+          },
+          "metadata": {
+            "bytecodeHash": "none"
+          },
+          "outputSelection": {
+            "*": {
+              "": [
+                "ast"
+              ],
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers"
+              ]
+            }
+          },
+          "evmVersion": "london"
+        }
+      },
+      "imports": [],
+      "versionRequirement": "^0.8.0",
+      "artifacts": {
+        "Strings": {
+          "0.8.12+commit.f00d7308.Linux.gcc": "Strings.sol/Strings.json"
+        }
+      }
+    },
+    "/home/a/Documents/github/nftee/lib/solmate/src/tokens/ERC721.sol": {
+      "lastModificationDate": 1649038102513,
+      "contentHash": "df4d88d747262fac3c8b4f179322b7af",
+      "sourceName": "lib/solmate/src/tokens/ERC721.sol",
+      "solcConfig": {
+        "settings": {
+          "optimizer": {
+            "enabled": true,
+            "runs": 1000
+          },
+          "metadata": {
+            "bytecodeHash": "none"
+          },
+          "outputSelection": {
+            "*": {
+              "": [
+                "ast"
+              ],
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers"
+              ]
+            }
+          },
+          "evmVersion": "london"
+        }
+      },
+      "imports": [],
+      "versionRequirement": ">=0.8.0",
+      "artifacts": {
+        "ERC721": {
+          "0.8.12+commit.f00d7308.Linux.gcc": "ERC721.sol/ERC721.json"
+        },
+        "ERC721TokenReceiver": {
+          "0.8.12+commit.f00d7308.Linux.gcc": "ERC721.sol/ERC721TokenReceiver.json"
+        }
+      }
+    },
+    "/home/a/Documents/github/nftee/src/ERCIDK.sol": {
+      "lastModificationDate": 1649340736949,
+      "contentHash": "5dea06a7f83600548a8976a4d9757beb",
+      "sourceName": "src/ERCIDK.sol",
+      "solcConfig": {
+        "settings": {
+          "optimizer": {
+            "enabled": true,
+            "runs": 1000
+          },
+          "metadata": {
+            "bytecodeHash": "none"
+          },
+          "outputSelection": {
+            "*": {
+              "": [
+                "ast"
+              ],
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers"
+              ]
+            }
+          },
+          "evmVersion": "london"
+        }
+      },
+      "imports": [
+        "lib/openzeppelin-contracts/contracts/access/Ownable.sol",
+        "lib/openzeppelin-contracts/contracts/utils/Context.sol",
+        "lib/openzeppelin-contracts/contracts/utils/Strings.sol",
+        "lib/solmate/src/tokens/ERC721.sol",
+        "src/interfaces/Base64.sol"
+      ],
+      "versionRequirement": "^0.8.9",
+      "artifacts": {
+        "ERCIDK": {
+          "0.8.12+commit.f00d7308.Linux.gcc": "ERCIDK.sol/ERCIDK.json"
+        }
+      }
+    },
+    "/home/a/Documents/github/nftee/src/interfaces/Base64.sol": {
+      "lastModificationDate": 1649340099509,
+      "contentHash": "0f43742bd2a4705055e3454f9f4b5567",
+      "sourceName": "src/interfaces/Base64.sol",
+      "solcConfig": {
+        "settings": {
+          "optimizer": {
+            "enabled": true,
+            "runs": 1000
+          },
+          "metadata": {
+            "bytecodeHash": "none"
+          },
+          "outputSelection": {
+            "*": {
+              "": [
+                "ast"
+              ],
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers"
+              ]
+            }
+          },
+          "evmVersion": "london"
+        }
+      },
+      "imports": [],
+      "versionRequirement": null,
+      "artifacts": {
+        "Base64": {
+          "0.8.12+commit.f00d7308.Linux.gcc": "Base64.sol/Base64.json"
+        }
+      }
+    },
+    "/home/a/Documents/github/nftee/src/test/ERCIDKs.t.sol": {
+      "lastModificationDate": 1649340322099,
+      "contentHash": "c7adf80f7e5c09ef14df859d00699c9c",
+      "sourceName": "src/test/ERCIDKs.t.sol",
+      "solcConfig": {
+        "settings": {
+          "optimizer": {
+            "enabled": true,
+            "runs": 1000
+          },
+          "metadata": {
+            "bytecodeHash": "none"
+          },
+          "outputSelection": {
+            "*": {
+              "": [
+                "ast"
+              ],
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers"
+              ]
+            }
+          },
+          "evmVersion": "london"
+        }
+      },
+      "imports": [
+        "lib/ds-test/src/test.sol",
+        "lib/forge-std/src/Vm.sol",
+        "lib/forge-std/src/stdlib.sol",
+        "lib/openzeppelin-contracts/contracts/access/Ownable.sol",
+        "lib/openzeppelin-contracts/contracts/utils/Context.sol",
+        "lib/openzeppelin-contracts/contracts/utils/Strings.sol",
+        "lib/solmate/src/tokens/ERC721.sol",
+        "src/ERCIDK.sol",
+        "src/interfaces/Base64.sol",
+        "src/test/utils/Console.sol"
+      ],
+      "versionRequirement": "=0.8.12",
+      "artifacts": {
+        "ERCIDKTest": {
+          "0.8.12+commit.f00d7308.Linux.gcc": "ERCIDKs.t.sol/ERCIDKTest.json"
+        },
+        "Receiver": {
+          "0.8.12+commit.f00d7308.Linux.gcc": "ERCIDKs.t.sol/Receiver.json"
+        }
+      }
+    },
+    "/home/a/Documents/github/nftee/src/test/utils/Console.sol": {
+      "lastModificationDate": 1649340317773,
+      "contentHash": "3e26e9b6c0b6ad907d2e1418840b999d",
+      "sourceName": "src/test/utils/Console.sol",
+      "solcConfig": {
+        "settings": {
+          "optimizer": {
+            "enabled": true,
+            "runs": 1000
+          },
+          "metadata": {
+            "bytecodeHash": "none"
+          },
+          "outputSelection": {
+            "*": {
+              "": [
+                "ast"
+              ],
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers"
+              ]
+            }
+          },
+          "evmVersion": "london"
+        }
+      },
+      "imports": [],
+      "versionRequirement": "=0.8.12",
+      "artifacts": {
+        "XConsole": {
+          "0.8.12+commit.f00d7308.Linux.gcc": "Console.sol/XConsole.json"
+        }
+      }
+    }
+  }
+}
