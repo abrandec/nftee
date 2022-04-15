@@ -454,7 +454,7 @@ contract ERCIDK is ERC721, Ownable {
         }
     }
 
-    /// WRITE FUNCTIONS
+    /// READ FUNCTIONS
     function readPercentages(uint256 tokenId) internal returns (uint8, uint8, uint8, uint8) {
         uint256 attributes_ = itemInfo[tokenId].attributes;
     
@@ -499,6 +499,8 @@ contract ERCIDK is ERC721, Ownable {
 
     }
 
+    // VIEW FUNCTIONS
+
 
     // Interactions
 
@@ -540,6 +542,8 @@ contract ERCIDK is ERC721, Ownable {
 
         (health, hunger, happiness, energy) = readPercentages(tokenId);
 
+        // decay uint8 values
+        health = decay(health, medicineTimestamp, 10);
        
         health + 10;
         happiness + 10;
@@ -565,16 +569,49 @@ contract ERCIDK is ERC721, Ownable {
 
     function freezeCreature(uint256 tokenId) external {
         if (msg.sender != ownerOf[tokenId]) revert NotTheOwner();
+        uint256 attributes_ = itemInfo[tokenId].attributes;
+        // you can freeze a dead creature irl, so no checks on isDead
+
+        assembly {
+                attributes_ := add(attributes_, shl(255, 8))
+        }
+
+        itemInfo[tokenId].attributes = attributes_;
+    }
+
+    function unfreezeCreature(uint256 tokenId) external {
+        if (msg.sender != ownerOf[tokenId]) revert NotTheOwner();
+        uint256 attributes_ = itemInfo[tokenId].attributes;
+        // you can freeze a dead creature irl, so no checks on isDead
+
+        assembly {
+            attributes_ := sub(attributes_, shl(255, 8))
+        }
+        itemInfo[tokenId].attributes = attributes_;
     }
 
     function killWassie(uint256 tokenId) external {
         if (msg.sender != ownerOf[tokenId]) revert NotTheOwner();
+        uint256 attributes_ = itemInfo[tokenId].attributes;
+        uint8 creature;
+
+        assembly {
+            creature := shr(
+                208,
+                and(
+                    attributes_,
+                    0x0000000000FF0000000000000000000000000000000000000000000000000000)
+            )
+        }
+
+        if (creature != 69) revert NotAWassie();
         // wassie check
     }
 
 
-    function decay(uint8 value, uint256 factor) internal returns (uint8) {
-
+    function decay(uint8 value, uint128 _timestamp, uint256 factor) internal returns (uint8) {
+        // block.timestamp - _timestamp = diff then do something w factor 
+        // return value after decaying it
     }
 
 
