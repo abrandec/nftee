@@ -25,7 +25,9 @@ contract ERCIDKTest is DSTest, stdCheats {
     }
 
     function testMintTo() public {
+        for (uint256 i = 0; i < 10000; ++i) {
         ercIDK.mintTo(address(1));
+        }
     }
 
     function testFailMaxSupplyReach() public {
@@ -75,13 +77,6 @@ contract ERCIDKTest is DSTest, stdCheats {
     }
 
     function testFailPrepayGas() public {
-        uint256 slot = stdStore
-            .target(address(ercIDK))
-            .sig("currentTokenId()")
-            .find();
-        bytes32 loc = bytes32(slot);
-        bytes32 mockedCurrentTokenId = bytes32(abi.encode(10000));
-        vm.store(address(ercIDK), loc, mockedCurrentTokenId);
         ercIDK.prepayGas(uint256(10001));
     }
 
@@ -89,6 +84,7 @@ contract ERCIDKTest is DSTest, stdCheats {
         ercIDK.prepayGas(uint256(10000));
         ercIDK.mintTo(address(1));
     }
+
 }
 
 contract Receiver {
